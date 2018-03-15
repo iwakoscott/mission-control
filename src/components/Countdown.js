@@ -13,6 +13,10 @@ class Countdown extends Component {
     }
   }
 
+  componentWillUnmount(){
+    clearInterval(this.interval);
+  }
+
   componentDidMount(){
     const recentPostDate = require('../data/missions.json')[0].timeStamp;
     const start = new Date(recentPostDate);
@@ -26,9 +30,16 @@ class Countdown extends Component {
 
   render(){
     const { hours, minutes, seconds, finished } = this.state;
+    
+    if (finished){
+      clearInterval(this.interval);
+      return (
+        <h3 className="spaced-out">Times up!</h3>
+      );
+    }
+
     return (
       <div>
-        <h3 className="spaced-out">Time Left</h3>
         <span className="h2">{ hours < 10 ? `0${hours}` : hours }</span>
         <span className="lead">&#58;</span>
         <span className="h2">{ minutes < 10 ? `0${minutes}` : minutes }</span>

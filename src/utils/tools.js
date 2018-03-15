@@ -50,7 +50,7 @@ export function parseTime(diffMS){
         leftover -= init[key]*1000;
         break;
       default:
-        init[key] = init['hours'] && init['minutes'] && init['seconds'];
+        init[key] = !init['hours'] && !init['minutes'] && !init['seconds'];
         break;
     }
     return init;
