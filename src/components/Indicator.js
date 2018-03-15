@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
-function Indicator(props){
+export default function Indicator(props){
   const styleRed = {
-    color: props.mission.complete ? "#b33939" : "#ff3f34"
+    color: props.complete ? "#b33939" : "#ff3f34"
   };
 
   const styleGreen = {
-    color: props.misson.complete ? "#0be881" : "#218c74"
+    color: props.complete ? "#0be881" : "#218c74"
   }
 
   return (
@@ -20,11 +19,3 @@ function Indicator(props){
     </div>
   );
 }
-
-function mapStateToProps({ mission }){
-  return {
-    mission
-  };
-}
-
-export default connect(mapStateToProps)(Indicator);

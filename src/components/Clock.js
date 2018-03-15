@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Indicator from './Indicator';
-import { parseTime } from '../utils/tools';
+import { parseDateTime } from '../utils/tools';
 class Clock extends Component {
 
   constructor(props){
@@ -15,7 +15,7 @@ class Clock extends Component {
   componentDidMount(){
     this.interval = setInterval(() => {
       const now = new Date(Date.now());
-      this.setState(parseTime(now));
+      this.setState(parseDateTime(now));
     }, 1000);
   } // componentDidMount
 

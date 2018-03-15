@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Clock from './Clock';
+import Countdown from './Countdown';
 
 class MissionControl extends Component {
 
@@ -10,6 +11,7 @@ class MissionControl extends Component {
           <h1 className="display-5 spaced-out">
             Mission Control
           </h1>
+          <Countdown />
           <p className="lead">&#35;100daysofcode</p>
         </div>
         <div className="container-fluid">

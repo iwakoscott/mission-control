@@ -16,3 +16,7 @@ body {
 .row-dashboard {
   background: #ecf0f1;
 }
+
+.App, html, body {
+  background: #f1f2f6;
+}

@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+const getHands = () => ['hours', 'minutes', 'seconds', 'finished'];
+
 export function getDayString(x){
   switch(x) {
     case 0:
@@ -21,11 +23,36 @@ export function getDayString(x){
   }
 }
 
-export function parseTime(Date){
+export function parseDateTime(Date){
   const d = Date.getDay();
   return {
     day: getDayString(d),
     date: moment(Date.toISOString()).format('MM.DD.YY'),
-    time: moment(Date.toISOString()).format('hh:mm:ss')
+    time: moment(Date.toISOString()).format('H:mm:ss')
   };
-} // parseTime
+} // parseDateTime
+
+
+export function parseTime(diffMS){
+  let leftover = diffMS;
+  return getHands().reduce((init, key) => {
+    switch(key){
+      case 'hours':
+        init[key] = Math.floor(leftover / 60 / 60 / 1000);
+        leftover -= init[key]*60*60*1000;
+        break;
+      case 'minutes':
+        init[key] = Math.floor(leftover / 60 / 1000);
+        leftover -= init[key]*60*1000;
+        break;
+      case 'seconds':
+        init[key] = Math.floor(leftover / 1000);
+        leftover -= init[key]*1000;
+        break;
+      default:
+        init[key] = init['hours'] && init['minutes'] && init['seconds'];
+        break;
+    }
+    return init;
+  }, {});
+}
