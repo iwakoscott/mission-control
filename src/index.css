@@ -8,7 +8,7 @@ body {
   font-family: sans-serif;
 }
 
-#day {
-  letter-spacing: 3px;
+.spaced-out {
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
