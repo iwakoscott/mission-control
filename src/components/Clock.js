@@ -26,7 +26,7 @@ class Clock extends Component {
     const { date, day, time } = this.state;
     return (
       <Fragment>
-        <div className="col col-md-2 offset-md-3">
+        <div className="col col-md-2">
           <h5 className="spaced-out" id="day">{day}</h5>
           <h5 id="date">{date}</h5>
           <h5 id="time">{time}</h5>

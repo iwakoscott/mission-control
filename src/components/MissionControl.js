@@ -10,6 +10,7 @@ class MissionControl extends Component {
           <h1 className="display-5 spaced-out">
             Mission Control
           </h1>
+          <p className="lead">&#35;100daysofcode</p>
         </div>
         <div className="container">
           <div className="row mt-3 justify-content-md-center">
