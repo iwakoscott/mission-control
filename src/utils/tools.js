@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export function getDay(x){
+export function getDayString(x){
   switch(x) {
     case 0:
       return 'Sunday';
@@ -24,7 +24,7 @@ export function getDay(x){
 export function parseTime(Date){
   const d = Date.getDay();
   return {
-    day: getDay(d),
+    day: getDayString(d),
     date: moment(Date.toISOString()).format('MM.DD.YY'),
     time: moment(Date.toISOString()).format('hh:mm:ss')
   };
