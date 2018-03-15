@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Indicator from './Indicator';
 import { parseTime } from '../utils/tools';
 class Clock extends Component {
 
@@ -26,17 +27,15 @@ class Clock extends Component {
     const { date, day, time } = this.state;
     return (
       <Fragment>
-        <div className="col col-md-2">
+        <div className="col col-xs-4 col-md-2">
           <h5 className="spaced-out" id="day">{day}</h5>
           <h5 id="date">{date}</h5>
           <h5 id="time">{time}</h5>
         </div>
-        <div className="col col-md-2 d-flex justify-content-center">
+        <div className="col col-xs-4 col-md-2 d-flex justify-content-center text-center">
           <h5 className="spaced-out">Day 0</h5>
         </div>
-        <div className="col col-md-2 d-flex justify-content-center">
-          <h5 className="spaced-out">Status</h5>
-        </div>
+        <Indicator />
       </Fragment>
     );
   } // render

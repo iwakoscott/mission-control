@@ -12,3 +12,7 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+
+.row-dashboard {
+  background: #ecf0f1;
+}
