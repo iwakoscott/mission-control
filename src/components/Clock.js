@@ -18,6 +18,10 @@ class Clock extends Component {
     }, 1000);
   } // componentDidMount
 
+  componentWillUnmount(){
+     clearInterval(this.interval);
+  } // componentWillUnmount
+
   render(){
     const { date, day, time } = this.state;
     return (
