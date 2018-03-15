@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import Clock from './Clock';
 
 class MissionControl extends Component {
 
   render(){
     return (
       <div className="container-fluid">
-        {/* <Clock />
-        <Indicator /> */}
+        <div className="row">
+          <Clock />
+        </div>
       </div>
     );
   } // render
