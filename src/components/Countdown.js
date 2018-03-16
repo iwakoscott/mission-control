@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { parseTime } from '../utils/tools';
 
+const TWENTY_FOUR_HRS = 1000*60*60*24;
+
 class Countdown extends Component {
 
   constructor(props){
@@ -9,7 +11,7 @@ class Countdown extends Component {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      finished: false
+      timerFinished: false,
     }
   }
 
@@ -19,8 +21,9 @@ class Countdown extends Component {
 
   componentDidMount(){
     const recentPostDate = require('../data/missions.json')[0].timeStamp;
-    const start = new Date(recentPostDate);
-    const dayAfter = new Date(start.getTime() + 1000*60*60*24);
+    const recent_post = new Date(recentPostDate);
+    const dayAfter = new Date(recent_post.getTime() + TWENTY_FOUR_HRS);
+
     this.interval = setInterval(() => {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
@@ -29,17 +32,16 @@ class Countdown extends Component {
   } // componentDidMount
 
   render(){
-    const { hours, minutes, seconds, finished } = this.state;
-    
-    if (finished){
+    const { hours, minutes, seconds, timerFinished } = this.state;
+
+    if (timerFinished){
       clearInterval(this.interval);
-      return (
-        <h3 className="spaced-out">Times up!</h3>
-      );
+      return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
 
     return (
       <div>
+        <h3 className="spaced-out">Time Left</h3>
         <span className="h2">{ hours < 10 ? `0${hours}` : hours }</span>
         <span className="lead">&#58;</span>
         <span className="h2">{ minutes < 10 ? `0${minutes}` : minutes }</span>

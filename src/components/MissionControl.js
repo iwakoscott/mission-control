@@ -11,7 +11,6 @@ class MissionControl extends Component {
           <h1 className="display-5 spaced-out">
             Mission Control
           </h1>
-          <h3 className="spaced-out">Time Left</h3>
           <Countdown />
           <p className="lead">&#35;100daysofcode</p>
         </div>

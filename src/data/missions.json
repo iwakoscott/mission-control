@@ -1,7 +1,15 @@
 [
   {
+    "dayNumber": 2,
+    "timeStamp": "2018-03-15T05:00:00.531Z",
+    "log": {
+      "title": "Add Countdown feature",
+      "body": "Mission Control will now count down the amount of time left in the day to add a post."
+    }
+  },
+  {
     "dayNumber": 1,
-    "timeStamp": "2018-03-15T12:00:00Z",
+    "timeStamp": "2018-03-14T00:30:40.569Z",
     "log": {
       "title": "Built a logger",
       "body" :"I built a logger to keep track of my 100 days of code."
@@ -9,7 +17,7 @@
   },
   {
     "dayNumber": 0,
-    "timeStamp": "2018-03-14T12:00:00Z",
+    "timeStamp": "2018-03-12T12:00:00Z",
     "log": {
       "title": "Add new features to logger",
       "body" :"Indicator lights light up to show your progress for the day."

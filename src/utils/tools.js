@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-const getHands = () => ['hours', 'minutes', 'seconds', 'finished'];
+const getHands = () => ['hours', 'minutes', 'seconds', 'timerFinished'];
 
 export function getDayString(x){
   switch(x) {
