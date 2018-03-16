@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Clock from './Clock';
 import Countdown from './Countdown';
+import Missions from './Missions';
 
 class MissionControl extends Component {
 
@@ -19,6 +20,7 @@ class MissionControl extends Component {
             <Clock />
           </div>
         </div>
+        <Missions showAll={true} />
       </div>
     );
   } // render
