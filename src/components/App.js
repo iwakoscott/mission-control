@@ -8,9 +8,16 @@ import '../index.css';
 import Dashboard from './Dashboard';
 import NoMatch from './NoMatch';
 import Footer from './Footer';
+import SignInPage from './SignIn';
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      authUser: null
+    };
+  }
   render() {
     return (
       <div className="App">
@@ -18,6 +25,7 @@ class App extends Component {
           <Fragment>
             <Switch>
               <Route exact path='/' component={MissionControl} />
+              <Route exact path="/login" component={SignInPage}/>
               <Route exact path='/admin' component={Dashboard} />
               <Route component={NoMatch} />
             </Switch>

@@ -12,6 +12,9 @@ class Missions extends Component {
   } // constructor
 
   componentDidMount(){
+    // dispatch(handleFetchLogs())
+      // dispatch(fetchingLogs())
+      // 
     const missions = require('../data/missions.json');
     this.setState(() => ({ missions }));
   } // componentDidMount

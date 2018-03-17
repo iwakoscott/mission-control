@@ -11,6 +11,15 @@ class LogForm extends Component {
     super(props);
     this.state = {...initialState}
   }
+
+  handleOnChange = (e) => {
+    const value = e.target.value;
+    const key = e.target.id;
+    return {
+      [key]: value
+    }
+  }
+
   render(){
     const { title, body } = this.state;
     return (
@@ -33,7 +42,7 @@ class LogForm extends Component {
                     value={title}
                     type="text"
                     placeholder="enter a log title"
-                    onChange={(e) => this.handleOnChange(e)}
+                    onChange={(e) => this.setState(this.handleOnChange(e))}
                   />
               </div>
               <div className="input-group">
@@ -48,11 +57,11 @@ class LogForm extends Component {
                   type="text"
                   placeholder="enter your log"
                   rows={7}
-                  onChange={(e) => this.handleOnChange(e)}
+                  onChange={(e) => this.setState(this.handleOnChange(e))}
                 ></textarea>
               </div>
               <button
-                className="btn btn-secondary btn-block btn-lg spaced-out mt-3"
+                className="btn btn-secondary btn-block spaced-out mt-3"
                 type="submit">
                   Complete Mission
               </button>
