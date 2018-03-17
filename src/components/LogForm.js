@@ -68,10 +68,8 @@ class LogForm extends Component {
             </form>
           </div>
         </div>
-        <div className="container">
-          <h6 className="spaced-out text-muted mb-3 mt-3">Recent Logs</h6>
-          <Missions showAll={false} numberShown={5}/>
-        </div>
+        <h6 className="spaced-out text-muted mb-3 mt-3 text-center">Recent Logs</h6>
+        <Missions showAll={false} numberShown={5}/>
       </div>
     );
   }

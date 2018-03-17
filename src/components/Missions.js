@@ -14,7 +14,7 @@ class Missions extends Component {
   componentDidMount(){
     // dispatch(handleFetchLogs())
       // dispatch(fetchingLogs())
-      // 
+      //
     const missions = require('../data/missions.json');
     this.setState(() => ({ missions }));
   } // componentDidMount
@@ -26,7 +26,11 @@ class Missions extends Component {
     if (showAll){
       return (
         <div className="container mt-3 mb-0">
-          {missions.map((mission) => <Mission key={mission.dayNumber} {...mission}/>)}
+          <div className="row">
+            <div className="col col-lg-6 offset-lg-3">
+              {missions.map((mission) => <Mission key={mission.dayNumber} {...mission}/>)}
+            </div>
+          </div>
         </div>
       );
     }
@@ -34,7 +38,11 @@ class Missions extends Component {
     if (!showAll && numberShown){
       return (
         <div className="container mt-3 mb-0">
-          {missions.slice(0, 5).map((mission) => <Mission key={mission.dayNumber} {...mission} />)}
+          <div className="row">
+            <div className="col col-lg-6 offset-lg-3">
+              {missions.slice(0, 5).map((mission) => <Mission key={mission.dayNumber} {...mission} />)}
+            </div>
+          </div>
         </div>
       );
     }
