@@ -2,18 +2,8 @@
   Still need to handle error!!!
 */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { auth } from '../firebase';
-
-const SignInPage = ({ history }) =>
-  <div className="container mt-5 d-flex justify-content-center align-items-center">
-      <div className="card mt-5 mb-5">
-        <div className="card-body text-center p-5">
-          <h1 className="card-title spaced-out text-muted h3">Sign in</h1>
-          <SignInForm history={history}/>
-        </div>
-      </div>
-  </div>
+import { connect } from 'react-redux';
+import { fetchAndHandleAuthedUser } from '../actions/users';
 
 const initialState = {
   email: '',
@@ -30,17 +20,13 @@ class SignInForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { dispatch } = this.props;
     const { email, password } = this.state;
-    const { history } = this.props;
-
-    auth.doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({...initialState});
-        history.push('/admin');
-      })
-      .catch(error => this.setState(() => ({
-        error
-      })));
+    dispatch(fetchAndHandleAuthedUser(
+      email,
+      password,
+      () => this.props.history.push('/admin')
+    ));
   } // handleSubmit
 
   handleOnChange = (e) => {
@@ -95,7 +81,4 @@ class SignInForm extends Component {
   } // render
 }
 
-export default withRouter(SignInPage);
-export {
-  SignInForm
-};
+export default connect()(SignInForm);

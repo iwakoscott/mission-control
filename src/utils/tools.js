@@ -56,3 +56,11 @@ export function parseTime(diffMS){
     return init;
   }, {});
 }
+
+export function formatUserData(displayName, photoURL, uid){
+  return {
+    displayName,
+    photoURL,
+    uid
+  };
+}

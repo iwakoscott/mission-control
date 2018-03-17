@@ -2,13 +2,12 @@ import React, { Component, Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import MissionControl from './MissionControl';
-import Missions from './Missions';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../index.css';
 import Dashboard from './Dashboard';
 import NoMatch from './NoMatch';
 import Footer from './Footer';
-import SignInPage from './SignIn';
+import SignInPage from './SignInPage';
 
 
 class App extends Component {
