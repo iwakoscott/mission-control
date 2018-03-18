@@ -46,11 +46,14 @@ export function fetchAndHandleAuthedUser(email, password, callback){
   return (dispatch) => {
     dispatch(fetchUser());
     return auth.doSignInWithEmailAndPassword(email, password)
-            .then(({ providerData }) => {
-              const { displayName, photoURL, uid } = providerData[0];
-              const user = formatUserData(displayName, photoURL, uid);
-              dispatch(fetchUserSuccess(uid, user, Date.now()));
-              callback();
+            .then((user) => {
+              const userData = user.providerData[0];
+              const { displayName, photoURL } = userData;
+              const userInfo = formatUserData(displayName, photoURL, user.uid);
+              return dispatch(fetchUserSuccess(user.uid, userInfo, Date.now()));
+            })
+            .then(({ uid }) => {
+              return dispatch(authUser(uid));
             })
             .catch(error => dispatch(fetchUserFail(error.message)));
   };

@@ -7,16 +7,34 @@
       ).catch((error) => dispatch(logoutFail()))
 */
 
-import React from 'react';
-import { auth } from '../firebase';
+import React, { Component } from 'react';
+import firebase from 'firebase';
+import { connect } from 'react-redux';
+import { unAuthUser } from '../actions/users';
 
-const SignOutButton = () =>
-  <div className="text-center">
-    <button
-      className="btn btn-danger spaced-out m-2"
-      onClick={auth.doSignOut}>
-      Sign out
-    </button>
-  </div>
+class SignOutButton extends Component {
+  handleClick = () => {
+    // Build a thunk later
+    firebase.auth().signOut();
+    this.props.dispatch(unAuthUser());
+    this.props.history.push('/');
+  }
 
-export default SignOutButton;
+  render(){
+    return (
+      <div className="container">
+        <div className="row text-center">
+          <div className="col-lg-4 offset-lg-4">
+            <button
+              className="btn btn-danger btn-block spaced-out m-2"
+              onClick={this.handleClick}>
+              Sign out
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default connect()(SignOutButton);

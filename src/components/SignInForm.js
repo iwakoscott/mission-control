@@ -22,11 +22,7 @@ class SignInForm extends Component {
     e.preventDefault();
     const { dispatch } = this.props;
     const { email, password } = this.state;
-    dispatch(fetchAndHandleAuthedUser(
-      email,
-      password,
-      () => this.props.history.push('/admin')
-    ));
+    dispatch(fetchAndHandleAuthedUser(email, password));
   } // handleSubmit
 
   handleOnChange = (e) => {
@@ -39,7 +35,7 @@ class SignInForm extends Component {
   } // handleOnChange
 
   render(){
-    const { email, password, error } = this.state;
+    const { email, password } = this.state;
     const isInvalid = email === '' || password === '';
 
     return (

@@ -29,7 +29,7 @@ class LogForm extends Component {
             <h1 className="card-title text-center spaced-out">
               Mission Log
             </h1>
-            <h3 className="card-subtitle text-muted mt-3 mb-3">Day 0</h3>
+            <h3 className="card-subtitle text-muted mt-3 mb-3 spaced-out">Day 0</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="input-group mb-3">
                   <div className="input-group-prepend">

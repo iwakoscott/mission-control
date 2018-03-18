@@ -25,7 +25,7 @@ class Dashboard extends Component {
   render(){
     return (
       <div>
-        <SignOutButton />
+        <SignOutButton history={this.props.history}/>
         <LogForm />
       </div>
     );
