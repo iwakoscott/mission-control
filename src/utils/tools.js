@@ -64,3 +64,10 @@ export function formatUserData(displayName, photoURL, uid){
     uid
   };
 }
+
+export function formatAnonymousUserData(uid){
+  return {
+    uid,
+    isAnonymous: true
+  };
+}

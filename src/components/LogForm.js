@@ -6,21 +6,14 @@ import { handleCreateLog } from '../actions/logs';
 const initialState = {
   title: '',
   body: '',
-  day: null,
   timeStamp: null,
+  day: 0
 }
 
 class LogForm extends Component {
   constructor(props){
     super(props);
     this.state = {...initialState}
-  }
-
-  componentDidMount(){
-    const day = this.props.logs.length + 1;
-    this.setState(() => ({
-      day
-    }));
   }
 
   handleOnChange = (e) => {
@@ -33,15 +26,17 @@ class LogForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState(() => ({ timeStamp: Date.now() }), () => {
+    this.setState(() => ({ timeStamp: Date.now(), day: this.props.logs.logs.length }), () => {
       const log = this.state;
       this.props.dispatch(handleCreateLog(log));
+      this.setState(() => ({...initialState}));
     });
   }
 
   render(){
     const { title, body } = this.state;
-    const day = this.props.logs.length + 1;
+    const day = this.props.logs.logs.length;
+
     return (
       <div className="container mt-3">
         <div className="row">
@@ -85,6 +80,7 @@ class LogForm extends Component {
                   </div>
                   <button
                     className="btn btn-secondary btn-block spaced-out mt-3"
+                    disabled={ title === '' || body === '' }
                     type="submit">
                       Complete Mission
                   </button>

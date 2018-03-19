@@ -3,9 +3,9 @@ import { crud } from '../firebase';
 export const CREATE_LOG = 'CREATE_LOG';
 export const CREATE_LOG_SUCCESS = 'CREATE_LOG_SUCCESS';
 export const CREATE_LOG_FAIL = 'CREATE_LOG_FAIL';
-export const READ_LOG = 'READ_LOG';
-export const READ_LOG_SUCCESS = 'READ_LOG_SUCCESS';
-export const READ_LOG_FAIL = 'READ_LOG_FAIL';
+export const FETCH_LOGS = 'FETCH_LOGS';
+export const FETCH_LOGS_SUCCESS = 'FETCH_LOGS_SUCCESS';
+export const FETCH_LOGS_FAIL = 'FETCH_LOGS_FAIL';
 export const UPDATE_LOG = 'UPDATE_LOG';
 export const UPDATE_LOG_SUCCESS = 'UPDATE_LOG_SUCCESS';
 export const UPDATE_LOG_FAIL = 'UPDATE_LOG_FAIL';
@@ -39,9 +39,40 @@ export function handleCreateLog(log){
   return (dispatch) => {
     dispatch(createLog());
     return crud.create(log)
-      .then(() => {
-        dispatch(createLogSuccess(log));
-      })
-      .catch((error) => dispatch(createLogFail(error)));
+      .then(() => dispatch(createLogSuccess(log)))
+      .catch((error) => {
+        dispatch(createLogFail(error));
+      });
   }
+}
+
+// read action creators
+
+function fetchLogs(){
+  return {
+    type: FETCH_LOGS
+  };
+}
+
+function fetchLogsSuccess(logs){
+  return {
+    type: FETCH_LOGS_SUCCESS,
+    logs
+  }
+}
+
+function fetchLogsFail(error){
+  return {
+    type: FETCH_LOGS_FAIL,
+    error
+  }
+}
+
+export function fetchAndHandleLogs(){
+  return (dispatch) => {
+    dispatch(fetchLogs());
+    return crud.read()
+      .then((logs) => dispatch(fetchLogsSuccess(logs.val())))
+      .catch((error) => dispatch(fetchLogsFail(error)));
+  };
 }

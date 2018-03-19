@@ -11,7 +11,7 @@ import SignInPage from './SignInPage';
 import PrivateRoute from './PrivateRoute';
 import { formatUserData } from '../utils/tools';
 import { connect } from 'react-redux';
-import { authUser, fetchUserSuccess } from '../actions/users';
+import { authUser, fetchUserSuccess, authAnonymousUser } from '../actions/users';
 import { auth } from '../firebase';
 
 class App extends Component {
@@ -19,14 +19,25 @@ class App extends Component {
   componentDidMount(){
     const { dispatch } = this.props;
     auth.onAuthStateChanged((user) => {
+
       if (user) {
+
+        if (user.isAnonymous){
+          return dispatch(authAnonymousUser(user.uid));
+        }
+
         const userData = user.providerData[0];
         const { displayName, photoURL } = userData;
         const { uid } = user;
         const userInfo = formatUserData(displayName, photoURL, uid);
         dispatch(authUser(uid));
         dispatch(fetchUserSuccess(uid, userInfo, Date.now()));
+        
+      } else {
+        auth.incognitoMode()
+          .then((user) => this.props.dispatch(authAnonymousUser(user.uid)));
       }
+
     });
   }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { parseTime } from '../utils/tools';
+import { connect } from 'react-redux';
 
 const TWENTY_FOUR_HRS = 1000*60*60*24;
 
@@ -20,7 +21,7 @@ class Countdown extends Component {
   }
 
   componentDidMount(){
-    const recentPostDate = require('../data/missions.json')[0].timeStamp;
+    const recentPostDate = this.props.logs.logs[0].timeStamp;
     const recent_post = new Date(recentPostDate);
     const dayAfter = new Date(recent_post.getTime() + TWENTY_FOUR_HRS);
 
@@ -52,4 +53,4 @@ class Countdown extends Component {
   } // render
 }
 
-export default Countdown;
+export default connect(state => ({ logs: state.logs }))(Countdown);

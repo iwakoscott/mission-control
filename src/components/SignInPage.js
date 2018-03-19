@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 function SignInPage(props){
-  const { error, isAuthed } = props;
+  const { error, isAuthed, isAnonymous } = props;
   const { from } = props.location.state || { from: { pathname: "/admin" } };
-
-  if (isAuthed) {
+  if (isAuthed && !isAnonymous) {
     return <Redirect to={from} />;
   }
 
@@ -34,7 +33,8 @@ function SignInPage(props){
 function mapStateToProps({ users }){
   return {
     error: users.error,
-    isAuthed: users.isAuthed
+    isAuthed: users.isAuthed,
+    isAnonymous: users.isAnonymous
   };
 }
 

@@ -3,7 +3,9 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
   AUTH_USER,
-  UNAUTH_USER
+  UNAUTH_USER,
+  AUTH_ANON_USER,
+  UNAUTH_ANON_USER
 } from '../actions/users';
 
 const initialUserState = {
@@ -32,16 +34,32 @@ const initialState = {
   isFetching: false,
   error: '',
   isAuthed: false,
-  authedID: ''
+  authedID: '',
+  isAnonymous: false
 };
 
 export default function users(state=initialState, action){
   switch(action.type){
+    case UNAUTH_ANON_USER:
+      return {
+        ...state,
+        authedID: '',
+        isAuthed: false,
+        isAnonymous: false,
+      };
+    case AUTH_ANON_USER:
+      return {
+        ...state,
+        isAnonymous: true,
+        isAuthed: true,
+        authedID: action.uid
+      };
     case AUTH_USER:
       return {
         ...state,
         isAuthed: true,
-        authedID: action.uid
+        authedID: action.uid,
+        isAnonymous: false
       };
     case UNAUTH_USER:
       return {
