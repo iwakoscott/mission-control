@@ -10,7 +10,7 @@ class MissionControl extends Component {
     const isFetched = this.props.logs.logs.length;
     return (
       <div>
-        <div className="jumbotron jumbotron-fluid text-center mb-0" style={{background: "#7f8c8d", color: "white"}}>
+        <div className="jumbotron jumbotron-fluid text-center mb-0" style={{background: "#aaa69d", color: "white"}}>
           <h1 className="display-5 spaced-out">
             Mission Control
           </h1>

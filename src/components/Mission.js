@@ -12,7 +12,7 @@ class Mission extends Component {
           <h5 className="card-title spaced-out">{`Day ${day}`}</h5>
           <h6 className="card-subtitle mb-2 text-muted">{title}</h6>
           <p className="card-text">{body}</p>
-          <p className="small">{formatedTimeStamp}</p>
+          <p className="small float-right text-muted font-italic">{formatedTimeStamp}</p>
         </div>
       </div>
     );
