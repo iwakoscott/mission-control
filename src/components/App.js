@@ -23,16 +23,16 @@ class App extends Component {
       if (user) {
 
         if (user.isAnonymous){
-          return dispatch(authAnonymousUser(user.uid));
+          dispatch(authAnonymousUser(user.uid));
+        } else {
+          const userData = user.providerData[0];
+          const { displayName, photoURL } = userData;
+          const { uid } = user;
+          const userInfo = formatUserData(displayName, photoURL, uid);
+          dispatch(authUser(uid));
+          dispatch(fetchUserSuccess(uid, userInfo, Date.now()));
         }
 
-        const userData = user.providerData[0];
-        const { displayName, photoURL } = userData;
-        const { uid } = user;
-        const userInfo = formatUserData(displayName, photoURL, uid);
-        dispatch(authUser(uid));
-        dispatch(fetchUserSuccess(uid, userInfo, Date.now()));
-        
       } else {
         auth.incognitoMode()
           .then((user) => this.props.dispatch(authAnonymousUser(user.uid)));

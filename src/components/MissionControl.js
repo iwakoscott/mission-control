@@ -35,4 +35,4 @@ class MissionControl extends Component {
 } // MissionControl
 
 
-export default connect(state => ({ logs: state.logs, users: state.users }))(MissionControl);
+export default connect(state => ({ logs: state.logs }))(MissionControl);

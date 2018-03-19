@@ -7,13 +7,6 @@ export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const AUTH_USER = 'AUTH_USER';
 export const UNAUTH_USER = 'UNAUTH_USER';
 export const AUTH_ANON_USER = 'AUTH_ANON_USER';
-export const UNAUTH_ANON_USER = 'UNAUTH_ANON_USER';
-
-export function unAuthAnonymousUser(){
-  return {
-    type: UNAUTH_ANON_USER
-  };
-}
 
 export function authAnonymousUser(uid){
   return {
@@ -57,17 +50,11 @@ export function fetchUserFail(message){
   };
 }
 
-export function handleLogOutAnonmyousUser(){
-  return (dispatch) => auth.doSignOut()
-    .then(() => dispatch(unAuthAnonymousUser()))
-}
-
 export function fetchAndHandleAuthedUser(email, password, callback){
   return (dispatch) => {
     dispatch(fetchUser());
     return auth.doSignInWithEmailAndPassword(email, password)
             .then((user) => {
-              dispatch(handleLogOutAnonmyousUser());
               const userData = user.providerData[0];
               const { displayName, photoURL } = userData;
               const userInfo = formatUserData(displayName, photoURL, user.uid);
