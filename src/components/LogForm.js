@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Missions from './Missions';
 import { connect } from 'react-redux';
 import { handleCreateLog } from '../actions/logs';
+import { formatTweet } from '../utils/tools';
 
 const initialState = {
   title: '',
@@ -29,6 +30,7 @@ class LogForm extends Component {
     this.setState(() => ({ timeStamp: Date.now(), day: this.props.logs.logs.length }), () => {
       const log = this.state;
       this.props.dispatch(handleCreateLog(log));
+      window.open(`https://twitter.com/intent/tweet?text=${formatTweet(log.day)}&hashtags=100daysofcode`);
       this.setState(() => ({...initialState}));
     });
   }

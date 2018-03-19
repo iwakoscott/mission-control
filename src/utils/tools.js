@@ -73,5 +73,5 @@ export function formatAnonymousUserData(uid){
 }
 
 export function formatTweet(day){
-  return `Day ${day}: What did you do today? #100daysofcode`;
+  return `Day ${day}: What did you do today?`;
 }
