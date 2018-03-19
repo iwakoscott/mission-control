@@ -71,3 +71,7 @@ export function formatAnonymousUserData(uid){
     isAnonymous: true
   };
 }
+
+export function formatTweet(day){
+  return `Day ${day}: What did you do today? #100daysofcode`;
+}
