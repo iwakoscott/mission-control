@@ -25,3 +25,12 @@ body {
 .App, html, body {
   background: #f1f2f6;
 }
+
+.at-tag {
+  color: #00aced;
+}
+
+.at-tag:hover {
+  color: #00aced;
+  text-decoration: none;
+}
