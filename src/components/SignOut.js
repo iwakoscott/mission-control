@@ -23,10 +23,10 @@ class SignOutButton extends Component {
   render(){
     return (
       <div className="container">
-        <div className="row text-center">
+        <div className="row">
           <div className="col-lg-4 offset-lg-4">
             <button
-              className="btn btn-danger btn-block spaced-out m-2"
+              className="btn btn-danger btn-block spaced-out mt-1"
               onClick={this.handleClick}>
               Sign out
             </button>

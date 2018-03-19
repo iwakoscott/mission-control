@@ -12,13 +12,13 @@ import PrivateRoute from './PrivateRoute';
 import { formatUserData } from '../utils/tools';
 import { connect } from 'react-redux';
 import { authUser, fetchUserSuccess } from '../actions/users';
-import firebase from 'firebase';
+import { auth } from '../firebase';
 
 class App extends Component {
 
   componentDidMount(){
     const { dispatch } = this.props;
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         const userData = user.providerData[0];
         const { displayName, photoURL } = userData;

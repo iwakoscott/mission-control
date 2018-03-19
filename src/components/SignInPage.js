@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom';
 function SignInPage(props){
   const { error, isAuthed } = props;
   const { from } = props.location.state || { from: { pathname: "/admin" } };
-  console.log(isAuthed);
 
   if (isAuthed) {
     return <Redirect to={from} />;
@@ -14,7 +13,7 @@ function SignInPage(props){
 
   return (
     <div className="container mt-5 d-flex justify-content-center align-items-center">
-        <div className="card mt-5 mb-5">
+        <div className="card mt-5 mb-5" style={{width: "20rem"}}>
           <div className="card-body text-center p-5">
             <h1 className="card-title spaced-out text-muted h3">Sign in</h1>
             <SignInForm history={props.history}/>
@@ -22,7 +21,7 @@ function SignInPage(props){
           {
             error &&
               <div className="card-footer">
-                <p className="spaced-out-lower">
+                <p className="small">
                   <strong>{error}</strong>
                 </p>
               </div>

@@ -20,7 +20,8 @@ class MissionControl extends Component {
             <Clock />
           </div>
         </div>
-        <Missions showAll={true} />
+        <h6 className="spaced-out text-muted mb-3 mt-3 text-center">Logs</h6>
+        <Missions />
       </div>
     );
   } // render
