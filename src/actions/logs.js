@@ -46,7 +46,7 @@ export function handleCreateLog(log){
   }
 }
 
-// read action creators
+// readLogs action creators
 
 function fetchLogs(){
   return {
@@ -58,21 +58,21 @@ function fetchLogsSuccess(logs){
   return {
     type: FETCH_LOGS_SUCCESS,
     logs
-  }
+  };
 }
 
 function fetchLogsFail(error){
   return {
     type: FETCH_LOGS_FAIL,
     error
-  }
+  };
 }
 
 export function fetchAndHandleLogs(){
   return (dispatch) => {
     dispatch(fetchLogs());
-    return crud.read()
-      .then((logs) => dispatch(fetchLogsSuccess(logs.val())))
-      .catch((error) => dispatch(fetchLogsFail(error)));
+    return crud.readLogs()
+      .then(logs => dispatch(fetchLogsSuccess(logs.val())))
+      .catch(error => dispatch(fetchLogsFail(error)));
   };
 }

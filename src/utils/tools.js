@@ -75,3 +75,5 @@ export function formatAnonymousUserData(uid){
 export function formatTweet(day){
   return `Day ${day}: What did you do today?`;
 }
+
+export const formatedTimeStamp = (timeStamp) => moment(new Date(timeStamp)).format('MM.DD.YY @ H:mm:ss');

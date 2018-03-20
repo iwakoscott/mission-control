@@ -9,6 +9,8 @@ import NoMatch from './NoMatch';
 import Footer from './Footer';
 import SignInPage from './SignInPage';
 import PrivateRoute from './PrivateRoute';
+import EditLog from './EditLog';
+import SignOutButton from './SignOutButton';
 import { formatUserData } from '../utils/tools';
 import { connect } from 'react-redux';
 import { authUser, fetchUserSuccess, authAnonymousUser } from '../actions/users';
@@ -42,14 +44,18 @@ class App extends Component {
   }
 
   render() {
+    const { isAnonymous, authedID } = this.props.users;
+    const { isFetching } = this.props.logs;
     return (
       <div className="App">
         <Router>
           <Fragment>
+            {!isAnonymous && !isFetching && authedID !== '' && <SignOutButton />}
             <Switch>
               <Route exact path='/' component={MissionControl} />
-              <Route exact path="/login" component={SignInPage}/>
-              <PrivateRoute exact path="/admin" component={Dashboard} />
+              <Route path="/login" component={SignInPage} />
+              <PrivateRoute path="/admin" component={Dashboard} />
+              <PrivateRoute path="/edit-log/:day" component={EditLog} />
               <Route component={NoMatch} />
             </Switch>
             <Footer />
@@ -60,4 +66,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default connect(state => ({ users: state.users, logs: state.logs }))(App);

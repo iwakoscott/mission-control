@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LogForm from './LogForm';
-import SignOutButton from './SignOut';
 
 class Dashboard extends Component {
 
@@ -25,7 +24,6 @@ class Dashboard extends Component {
   render(){
     return (
       <div>
-        <SignOutButton history={this.props.history}/>
         <LogForm />
       </div>
     );

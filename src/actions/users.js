@@ -66,3 +66,13 @@ export function fetchAndHandleAuthedUser(email, password, callback){
             .catch(error => dispatch(fetchUserFail(error.message)));
   };
 }
+
+export function handleLogOutUser(callback){
+  return (dispatch) => {
+    return auth.doSignOut()
+      .then(() => {
+        dispatch(unAuthUser());
+        callback();
+      })
+  };
+}
