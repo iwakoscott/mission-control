@@ -8,17 +8,11 @@ class SignOutButton extends Component {
 
   render(){
     return (
-      <div className="container mb-2 mt-2">
-        <div className="row">
-          <div className="col-lg-4 offset-lg-4">
-            <button
-              className="btn btn-danger btn-block spaced-out"
-              onClick={this.handleClick}>
-              Sign out
-            </button>
-          </div>
-        </div>
-      </div>
+      <button
+        className="btn btn-danger spaced-out"
+        onClick={this.handleClick}>
+        Sign out
+      </button>
     );
   }
 }

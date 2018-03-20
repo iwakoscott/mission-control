@@ -10,7 +10,7 @@ import Footer from './Footer';
 import SignInPage from './SignInPage';
 import PrivateRoute from './PrivateRoute';
 import EditLog from './EditLog';
-import SignOutButton from './SignOutButton';
+import ButtonGroup from './ButtonGroup';
 import { formatUserData } from '../utils/tools';
 import { connect } from 'react-redux';
 import { authUser, fetchUserSuccess, authAnonymousUser } from '../actions/users';
@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <Fragment>
-            {!isAnonymous && !isFetching && authedID !== '' && <SignOutButton />}
+            {!isAnonymous && !isFetching && authedID !== '' && <ButtonGroup history={this.props.history} />}
             <Switch>
               <Route exact path='/' component={MissionControl} />
               <Route path="/login" component={SignInPage} />
