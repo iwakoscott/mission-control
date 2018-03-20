@@ -25,9 +25,9 @@ function Indicator(props){
         diff !== null
           ?
             <div className="d-flex justify-content-center">
-              <i className="green fa fa-circle fa-lg mr-2" style={styleGreen}></i>
-              <i className="yellow fa fa-circle fa-lg mr-2" style={styleYellow}></i>
-              <i className="red fa fa-circle fa-lg" style={styleRed}></i>
+              <i className="fa fa-circle fa-lg mr-2" style={styleGreen}></i>
+              <i className="fa fa-circle fa-lg mr-2" style={styleYellow}></i>
+              <i className="fa fa-circle fa-lg" style={styleRed}></i>
             </div>
           : <i className="fa fa-spinner fa-spin fa-1x"></i>
       }

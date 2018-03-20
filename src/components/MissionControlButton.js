@@ -12,7 +12,7 @@ class MissionControlButton extends Component {
       <button
         className="btn btn-secondary spaced-out"
         onClick={this.handleClick}>
-        Mission Control
+        M.C.
       </button>
     );
   }
