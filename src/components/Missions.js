@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Mission from './Mission';
+import Loading from './Loading';
 import { connect } from 'react-redux';
 import { fetchAndHandleLogs } from '../actions/logs';
 
@@ -19,7 +20,7 @@ class Missions extends Component {
           <div className="col col-lg-6 offset-lg-3">
             {
               isFetching
-              ? <h4 className="text-center text-muted spaced-out">Loading...</h4>
+              ? <Loading />
               : missions.map((mission) => <Mission key={mission.day} {...mission} />)
             }
           </div>

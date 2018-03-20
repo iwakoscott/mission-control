@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { parseTime } from '../utils/tools';
 import { connect } from 'react-redux';
+import {
+  tick,
+  countdownStart,
+  countDownEnd
+} from '../actions/countdown';
 
 const TWENTY_FOUR_HRS = 1000*60*60*24;
 
@@ -21,22 +26,26 @@ class Countdown extends Component {
   }
 
   componentDidMount(){
+    const { dispatch } = this.props;
     const recentPostDate = this.props.logs.logs[0].timeStamp;
     const recent_post = new Date(recentPostDate);
     const dayAfter = new Date(recent_post.getTime() + TWENTY_FOUR_HRS);
 
+    dispatch(countdownStart());
     this.interval = setInterval(() => {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
-      this.setState(parseTime(diff));
+      this.setState(parseTime(diff), () => dispatch(tick(diff)));
     }, 1000);
   } // componentDidMount
 
   render(){
     const { hours, minutes, seconds, timerFinished } = this.state;
+    const { dispatch } = this.props;
 
     if (timerFinished){
       clearInterval(this.interval);
+      dispatch(countDownEnd());
       return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
 
