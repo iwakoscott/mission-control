@@ -15,7 +15,7 @@ function Indicator(props){
     color: hours === 0 ? "#ff3f34" : "#747d8c"
   };
   const styleYellow = {
-    color: hours > 0 && hours <= 12 ? "#218c74" : "#747d8c"
+    color: hours > 0 && hours < 12 ? "#FFC312" : "#747d8c"
   };
 
   return (
@@ -29,7 +29,7 @@ function Indicator(props){
               <i className="yellow fa fa-circle fa-lg mr-2" style={styleYellow}></i>
               <i className="red fa fa-circle fa-lg" style={styleRed}></i>
             </div>
-          : <i className="fa fa-cog fa-spin fa-1x"></i>
+          : <i className="fa fa-spinner fa-spin fa-1x"></i>
       }
     </div>
   );
