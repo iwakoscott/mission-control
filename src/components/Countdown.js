@@ -6,6 +6,7 @@ import {
   countdownStart,
   countDownEnd
 } from '../actions/countdown';
+import { handleDeleteAllLogs } from '../actions/logs';
 
 const TWENTY_FOUR_HRS = 1000*60*60*24;
 
@@ -46,7 +47,7 @@ class Countdown extends Component {
     if (timerFinished){
       clearInterval(this.interval);
       dispatch(countDownEnd());
-      
+      dispatch(handleDeleteAllLogs());
       return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
 

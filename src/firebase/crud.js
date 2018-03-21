@@ -18,3 +18,4 @@ export const readLog = day => {
 export const updateLog = log => firebaseDB.ref('logs').child(`${log.day}`).update(log)
 
 // delete
+export const deleteAllLogs = () => firebaseDB.ref().child('logs').remove();

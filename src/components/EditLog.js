@@ -45,6 +45,7 @@ class EditLog extends Component {
     const timeStampFormatted = log !== null ? formatedTimeStamp(log.timeStamp) : null;
 
     if (error !== null) {
+      console.log(this.props.location);
       return <Redirect
                 to={{
                   pathname: "/403",

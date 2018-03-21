@@ -12,6 +12,7 @@ export const UPDATE_LOG_FAIL = 'UPDATE_LOG_FAIL';
 export const DELETE_LOG = 'DELETE_LOG';
 export const DELETE_LOG_SUCCESS = 'DELETE_LOG_SUCCESS';
 export const DELETE_LOG_FAIL = 'DELETE_LOG_FAIL';
+export const DELETE_ALL_LOGS = 'DELETE_ALL_LOGS';
 
 // create action creators
 function createLog(){
@@ -75,4 +76,14 @@ export function fetchAndHandleLogs(n){
       .then(logs => dispatch(fetchLogsSuccess(logs.val())))
       .catch(error => dispatch(fetchLogsFail(error)));
   };
+}
+
+function deleteLogs(){
+  return {
+    type: DELETE_ALL_LOGS,
+  };
+}
+
+export function handleDeleteAllLogs(){
+  return (dispatch) => crud.deleteAllLogs().then(dispatch(deleteLogs()));
 }

@@ -2,7 +2,8 @@ import {
   CREATE_LOG_SUCCESS,
   FETCH_LOGS_SUCCESS,
   FETCH_LOGS,
-  FETCH_LOGS_FAIL
+  FETCH_LOGS_FAIL,
+  DELETE_ALL_LOGS
 } from '../actions/logs';
 
 const initialState = {
@@ -36,6 +37,10 @@ export default function logs(state=initialState, action){
         logs: [...reversed],
         isFetching: false,
         error: null
+      };
+    case DELETE_ALL_LOGS:
+      return {
+        ...initialState
       };
     default:
       return state;

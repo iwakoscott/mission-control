@@ -9,7 +9,7 @@ function ButtonGroup(props){
   const isAdminPage = props.location.pathname === '/admin';
 
   return (
-    <div className="container-fluid mb-2 mt-2 text-center">
+    <div className="container-fluid text-center pt-3 pb-3" style={{background: "#57606f"}}>
         <div
           className="btn-group btn-group-sm"
           role="group">
