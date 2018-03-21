@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import MissionControl from './MissionControl';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import '../index.css';
 import Dashboard from './Dashboard';
 import NoMatch from './NoMatch';
@@ -38,7 +38,8 @@ class App extends Component {
 
       } else {
         auth.incognitoMode()
-          .then((user) => this.props.dispatch(authAnonymousUser(user.uid)));
+          .then(user => this.props.dispatch(authAnonymousUser(user.uid)))
+          .then(() => window.location.reload());
       }
 
     });

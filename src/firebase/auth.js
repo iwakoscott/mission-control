@@ -11,5 +11,4 @@ export const doSignOut = () =>
 export const onAuthStateChanged = (f) =>
   auth.onAuthStateChanged(f);
 
-export const incognitoMode = () =>
-  auth.signInAnonymously()
+export const incognitoMode = () => auth.signInAnonymously()
