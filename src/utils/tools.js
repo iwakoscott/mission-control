@@ -73,7 +73,7 @@ export function formatAnonymousUserData(uid){
 }
 
 export function formatTweet(day){
-  return `Day ${day}: What did you do today?`;
+  return `Day ${day}: What did you do today? https://goo.gl/crf9F8`;
 }
 
 export const formatedTimeStamp = (timeStamp) => moment(new Date(timeStamp)).format('MM.DD.YY @ H:mm:ss');
