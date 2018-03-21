@@ -8,7 +8,7 @@ class AdminButton extends Component {
   render(){
     return (
       <button
-        className="btn btn-primary spaced-out"
+        className="btn btn-secondary spaced-out"
         onClick={this.handleClick}>
         Admin
       </button>

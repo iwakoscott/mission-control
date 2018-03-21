@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAndHandleLog, updateAndHandleLog } from '../actions/log';
 import { formatedTimeStamp } from '../utils/tools';
+import { Redirect } from 'react-router-dom';
 
 class EditLog extends Component {
 
@@ -40,8 +41,16 @@ class EditLog extends Component {
 
   render(){
     const { title, body } = this.state;
-    const { isFetching, log } = this.props.log;
+    const { isFetching, log, error } = this.props.log;
     const timeStampFormatted = log !== null ? formatedTimeStamp(log.timeStamp) : null;
+
+    if (error !== null) {
+      return <Redirect
+                to={{
+                  pathname: "/403",
+                  state: { from: this.props.location }
+                }}/>;
+    }
 
     return (
       <div className="container mt-3 mb-3">

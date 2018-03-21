@@ -20,9 +20,10 @@ function fetchLogSuccess(log){
   };
 }
 
-function fetchLogFail(){
+function fetchLogFail(error){
   return {
     type: FETCH_LOG_FAIL,
+    error
   };
 }
 
@@ -30,8 +31,13 @@ export function fetchAndHandleLog(day){
   return (dispatch) => {
     dispatch(fetchLog());
     return crud.readLog(day)
-      .then(snapshot => dispatch(fetchLogSuccess(snapshot)))
-      .catch(error => dispatch(fetchLogFail(error)));
+      .then(snapshot => {
+        if (snapshot.exists()){
+          const log = snapshot.val();
+          return dispatch(fetchLogSuccess(log));
+        }
+        return dispatch(fetchLogFail(`Log for Day ${day} not found in Database`));
+      });
   };
 }
 
@@ -48,10 +54,9 @@ function updateLogSuccess(log){
   };
 }
 
-function updateLogFail(error){
+function updateLogFail(){
   return {
-    type: UPDATE_LOG_FAIL,
-    error
+    type: UPDATE_LOG_FAIL
   };
 }
 
@@ -63,6 +68,6 @@ export function updateAndHandleLog(log, callback){
          dispatch(updateLogSuccess(log));
          callback();
       })
-      .catch(error => dispatch(updateLogFail(error)));
+      .catch(() => dispatch(updateLogFail()));
   };
 }

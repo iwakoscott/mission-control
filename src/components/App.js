@@ -11,6 +11,7 @@ import SignInPage from './SignInPage';
 import PrivateRoute from './PrivateRoute';
 import EditLog from './EditLog';
 import ButtonGroup from './ButtonGroup';
+import DataNotFound from './DataNotFound';
 import { formatUserData } from '../utils/tools';
 import { connect } from 'react-redux';
 import { authUser, fetchUserSuccess, authAnonymousUser } from '../actions/users';
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path="/login" component={SignInPage} />
               <PrivateRoute path="/admin" component={Dashboard} />
               <PrivateRoute path="/edit-log/:day" component={EditLog} />
+              <Route path="/403" component={DataNotFound} />
               <Route component={NoMatch} />
             </Switch>
             <Footer />

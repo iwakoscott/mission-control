@@ -10,8 +10,8 @@ export const create = log => firebaseDB.ref(`logs/${log.day}`)
 export const readLogs = n => firebaseDB.ref('/logs').limitToLast(n).once('value')
 
 export const readLog = day => {
-  const ref = firebaseDB.ref(`/logs/${day}`);
-  return ref.once('value').then(snapshot => snapshot.val())
+  const ref = firebaseDB.ref().child('logs').child(day);
+  return ref.once('value');
 }
 
 // update

@@ -10,9 +10,9 @@ import {
 const initialState = {
   isFetching: false,
   isUpdating: false,
-  error: null,
   log: {},
-  editedLog: {}
+  editedLog: {},
+  error: null
 };
 
 export default function log(state=initialState, action){
@@ -21,7 +21,7 @@ export default function log(state=initialState, action){
       return {
         ...state,
         isFetching: true,
-        error: null
+        error: null,
       };
     case FETCH_LOG_SUCCESS:
       return {
@@ -39,7 +39,6 @@ export default function log(state=initialState, action){
       return {
         ...state,
         isUpdating: true,
-        error: null
       };
     case UPDATE_LOG_SUCCESS:
       return {
@@ -51,7 +50,6 @@ export default function log(state=initialState, action){
       return {
         ...state,
         isUpdating: false,
-        error: action.error
       };
     default:
       return state;
