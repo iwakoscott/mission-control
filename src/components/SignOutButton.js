@@ -4,7 +4,10 @@ import { withRouter } from 'react-router-dom';
 import { handleLogOutUser } from '../actions/users';
 
 class SignOutButton extends Component {
-  handleClick = () => this.props.dispatch(handleLogOutUser(() => this.props.history.push('/')))
+  handleClick = () => this.props.dispatch(handleLogOutUser(() => this.props.history.push({
+    pathname: '/',
+    state: { from: this.props.location }
+  })));
 
   render(){
     return (

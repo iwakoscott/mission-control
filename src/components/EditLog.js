@@ -13,7 +13,7 @@ class EditLog extends Component {
     };
   } // constructor
 
-  componentDidMount(){
+  componentWillMount(){
     const { day } = this.props.match.params;
     this.props.dispatch(fetchAndHandleLog(day));
   }

@@ -20,10 +20,9 @@ function fetchLogSuccess(log){
   };
 }
 
-function fetchLogFail(error){
+function fetchLogFail(){
   return {
     type: FETCH_LOG_FAIL,
-    error
   };
 }
 
@@ -31,7 +30,7 @@ export function fetchAndHandleLog(day){
   return (dispatch) => {
     dispatch(fetchLog());
     return crud.readLog(day)
-      .then(log => dispatch(fetchLogSuccess(log.val())))
+      .then(snapshot => dispatch(fetchLogSuccess(snapshot)))
       .catch(error => dispatch(fetchLogFail(error)));
   };
 }

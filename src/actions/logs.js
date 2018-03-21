@@ -68,10 +68,10 @@ function fetchLogsFail(error){
   };
 }
 
-export function fetchAndHandleLogs(){
+export function fetchAndHandleLogs(n){
   return (dispatch) => {
     dispatch(fetchLogs());
-    return crud.readLogs()
+    return crud.readLogs(n)
       .then(logs => dispatch(fetchLogsSuccess(logs.val())))
       .catch(error => dispatch(fetchLogsFail(error)));
   };

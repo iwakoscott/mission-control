@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = props =>
-  <div className="container-fluid mb-3">
+  <div className="container-fluid mb-5 mt-5">
     <div className="row">
       <div className="col col-sm-6 offset-sm-3 text-center">
         <p className="small spaced-out" style={{color: '#2f3640'}}>Made by Satoshi</p>
