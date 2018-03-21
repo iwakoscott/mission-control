@@ -39,6 +39,7 @@ export default function log(state=initialState, action){
       return {
         ...state,
         isUpdating: true,
+        error: null
       };
     case UPDATE_LOG_SUCCESS:
       return {
@@ -50,6 +51,7 @@ export default function log(state=initialState, action){
       return {
         ...state,
         isUpdating: false,
+        error: action.error
       };
     default:
       return state;

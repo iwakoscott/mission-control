@@ -91,7 +91,7 @@ class LogForm extends Component {
             </div>
           </div>
         </div>
-        <h6 className="spaced-out text-muted mb-3 mt-3 text-center">Recent Logs</h6>
+        <h6 className="spaced-out text-muted mb-2 mt-4 text-center">Recent Logs</h6>
         <Missions />
       </div>
     );

@@ -46,6 +46,7 @@ class Countdown extends Component {
     if (timerFinished){
       clearInterval(this.interval);
       dispatch(countDownEnd());
+      
       return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
 

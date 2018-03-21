@@ -54,9 +54,10 @@ function updateLogSuccess(log){
   };
 }
 
-function updateLogFail(){
+function updateLogFail(error){
   return {
-    type: UPDATE_LOG_FAIL
+    type: UPDATE_LOG_FAIL,
+    error
   };
 }
 
@@ -68,6 +69,6 @@ export function updateAndHandleLog(log, callback){
          dispatch(updateLogSuccess(log));
          callback();
       })
-      .catch(() => dispatch(updateLogFail()));
+      .catch(error => dispatch(updateLogFail(error)));
   };
 }

@@ -26,7 +26,7 @@ class MissionControl extends Component {
             <Clock />
           </div>
         </div>
-        <h6 className="spaced-out text-muted mb-3 mt-3 text-center">Logs</h6>
+        <h6 className="spaced-out text-muted mb-2 mt-4 text-center">Logs</h6>
         <Missions />
       </div>
     );
