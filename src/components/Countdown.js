@@ -55,7 +55,7 @@ class Countdown extends Component {
         return <h3>100 Days! Mission Complete!</h3>;
       }
 
-      dispatch(handleDeleteAllLogs());
+      // dispatch(handleDeleteAllLogs());
       return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
 
