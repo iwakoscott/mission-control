@@ -49,7 +49,6 @@ class Countdown extends Component {
 
   render(){
     const { hours, minutes, seconds, timerFinished } = this.state;
-    const { dispatch } = this.props;
 
     const { logs } = this.props.logs;
     const day = logs[0].day;
@@ -59,7 +58,7 @@ class Countdown extends Component {
       if (day + 1 === 101) {
         return <h3>100 Days! Mission Complete!</h3>;
       } else {
-        return <h3 className="spaced-out">Times up! Mission Failed...</h3>;  
+        return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
       }
     }
 
