@@ -36,7 +36,7 @@ class Countdown extends Component {
     this.interval = setInterval(() => {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
-      
+
       if (diff === 0){
         clearInterval(this.interval);
         dispatch(countDownEnd());
@@ -58,9 +58,9 @@ class Countdown extends Component {
 
       if (day + 1 === 101) {
         return <h3>100 Days! Mission Complete!</h3>;
+      } else {
+        return <h3 className="spaced-out">Times up! Mission Failed...</h3>;  
       }
-
-      return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
 
     return (
