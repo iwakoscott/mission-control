@@ -44,9 +44,17 @@ class Countdown extends Component {
     const { hours, minutes, seconds, timerFinished } = this.state;
     const { dispatch } = this.props;
 
+    const { logs } = this.props.logs;
+    const day = logs[0].day;
+
     if (timerFinished){
       clearInterval(this.interval);
       dispatch(countDownEnd());
+
+      if (day + 1 === 101) {
+        return <h3>100 Days! Mission Complete!</h3>;
+      }
+
       dispatch(handleDeleteAllLogs());
       return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
