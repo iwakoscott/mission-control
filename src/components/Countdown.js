@@ -36,6 +36,13 @@ class Countdown extends Component {
     this.interval = setInterval(() => {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
+      
+      if (diff === 0){
+        clearInterval(this.interval);
+        dispatch(countDownEnd());
+        //dispatch(handleDeleteAllLogs());
+      }
+
       this.setState(parseTime(diff), () => dispatch(tick(diff)));
     }, 1000);
   } // componentDidMount
@@ -48,14 +55,11 @@ class Countdown extends Component {
     const day = logs[0].day;
 
     if (timerFinished){
-      clearInterval(this.interval);
-      dispatch(countDownEnd());
 
       if (day + 1 === 101) {
         return <h3>100 Days! Mission Complete!</h3>;
       }
 
-      // dispatch(handleDeleteAllLogs());
       return <h3 className="spaced-out">Times up! Mission Failed...</h3>;
     }
 
