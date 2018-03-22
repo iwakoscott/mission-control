@@ -22,6 +22,28 @@ class Countdown extends Component {
     }
   }
 
+  componentWillUpdate(){
+    clearInterval(this.interval);
+    const { dispatch } = this.props;
+    const recentPostDate = this.props.logs.logs[0].timeStamp;
+    const recent_post = new Date(recentPostDate);
+    const dayAfter = new Date(recent_post.getTime() + TWENTY_FOUR_HRS);
+
+    dispatch(countdownStart());
+    this.interval = setInterval(() => {
+      const now = Date.now();
+      const diff = dayAfter.getTime() - now;
+
+      if (diff === 0){
+        clearInterval(this.interval);
+        dispatch(countDownEnd());
+        //dispatch(handleDeleteAllLogs());
+      }
+
+      this.setState(parseTime(diff), () => dispatch(tick(diff)));
+    }, 1000);
+  }
+
   componentWillUnmount(){
     clearInterval(this.interval);
   }
@@ -49,12 +71,10 @@ class Countdown extends Component {
 
   render(){
     const { hours, minutes, seconds, timerFinished } = this.state;
-
     const { logs } = this.props.logs;
     const day = logs[0].day;
 
     if (timerFinished){
-
       if (day + 1 === 101) {
         return <h3>100 Days! Mission Complete!</h3>;
       } else {

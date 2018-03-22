@@ -7,7 +7,8 @@ export const create = log => firebaseDB.ref(`logs/${log.day}`)
     .catch(error => error);
 
 // read
-export const readLogs = n => firebaseDB.ref('/logs').limitToLast(n).once('value')
+export const logsRefLimit = n => firebaseDB.ref('/logs')
+  .limitToLast(n);
 
 export const readLog = day => {
   const ref = firebaseDB.ref().child('logs').child(day);

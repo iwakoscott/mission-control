@@ -72,9 +72,14 @@ function fetchLogsFail(error){
 export function fetchAndHandleLogs(n){
   return (dispatch) => {
     dispatch(fetchLogs());
-    return crud.readLogs(n)
-      .then(logs => dispatch(fetchLogsSuccess(logs.val())))
-      .catch(error => dispatch(fetchLogsFail(error)));
+    return crud.logsRefLimit(n)
+      .on('value', logs => {
+        if (logs.exists()){
+          dispatch(fetchLogsSuccess(logs.val()));
+        } else {
+          dispatch(fetchLogsFail("Fetch Failed."));
+        }
+      });
   };
 }
 

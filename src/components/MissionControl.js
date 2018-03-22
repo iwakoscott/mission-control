@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 
 class MissionControl extends Component {
 
+  componentWillReceiveProps(){
+    this.forceUpdate();
+  }
+
   render(){
     const isFetched = this.props.logs.logs.length;
     return (
