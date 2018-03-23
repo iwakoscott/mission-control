@@ -29,7 +29,7 @@ class LogForm extends Component {
     this.setState(() => ({ timeStamp: Date.now(), day: this.props.logs.logs.length }), () => {
       const log = this.state;
       this.props.dispatch(handleCreateLog(log));
-      //window.open(`https://twitter.com/intent/tweet?text=${formatTweet(log.day, log.title)}&hashtags=100DaysOfCode,FreeCodeCamp`);
+      window.open(`https://twitter.com/intent/tweet?text=${formatTweet(log.day, log.title)}&hashtags=100DaysOfCode,FreeCodeCamp`);
       this.setState(() => ({...initialState}));
     });
   }
