@@ -34,3 +34,12 @@ body {
   color: #00aced;
   text-decoration: none;
 }
+
+.colon {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.time {
+  font-family: monospace !important;
+}

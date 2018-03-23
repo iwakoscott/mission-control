@@ -91,11 +91,11 @@ class Countdown extends Component {
     return (
       <div>
         <h3 className="spaced-out">Time Left</h3>
-        <span className="h2">{ hours < 10 ? `0${hours}` : hours }</span>
-        <span className="lead">&#58;</span>
-        <span className="h2">{ minutes < 10 ? `0${minutes}` : minutes }</span>
-        <span className="lead">&#58;</span>
-        <span className="h2">{ seconds < 10 ? `0${seconds}` : seconds }</span>
+        <span className="h2 time">{ hours < 10 ? `0${hours}` : hours }</span>
+        <span className="lead colon">&#58;</span>
+        <span className="h2 time">{ minutes < 10 ? `0${minutes}` : minutes }</span>
+        <span className="lead colon">&#58;</span>
+        <span className="h2 time">{ seconds < 10 ? `0${seconds}` : seconds }</span>
       </div>
     );
   } // render
