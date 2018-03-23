@@ -1,9 +1,13 @@
 import { firebaseDB } from './constants';
 
+// turn off auto updates
+export const autoReadOff = () => firebaseDB.ref('logs').off();
+
 // create
-export const create = log => firebaseDB.ref(`logs/${log.day}`)
+export const create = log => firebaseDB.ref(`logs`)
+    .child(log.day)
     .set(log)
-    .then(() => log)
+    .then(log => log)
     .catch(error => error);
 
 // read

@@ -6,44 +6,13 @@ import { fetchAndHandleLogs } from '../actions/logs';
 
 class Missions extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      n: 100
-    };
-  }
-
-  // handleOnScroll = () => {
-  //   var pageHeight=document.documentElement.offsetHeight,
-  //   windowHeight=window.innerHeight,
-  //   scrollPosition=window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
-  //
-  //   if (pageHeight <= windowHeight+scrollPosition) {
-  //     this.setState(() => ({
-  //       n: this.state.n < 100 ? 100 : this.state.n + 10
-  //     }), () => {
-  //       if ( this.state.n < 100 ){
-  //         this.props.dispatch(fetchAndHandleLogs(this.state.n))
-  //       }
-  //     });
-  //   }
-  // };
-
   componentDidMount(){
-    this.props.dispatch(fetchAndHandleLogs(this.state.n));
-    // window.addEventListener('scroll', this.handleOnScroll);
-    // Add event listener to window scroll;
-
+    this.props.dispatch(fetchAndHandleLogs(100));
   }
-
-  // componentWillUnmount(){
-  //   window.removeEventListener('scroll', this.handleOnScroll, false);
-  // }
 
   render(){
-    const missions = this.props.logs.logs;
-    const { isFetching } = this.props.logs;
-
+    const { isFetching, logs } = this.props.logs;
+    console.log("I have re rendered!")
     return (
       <div className="container mt-3 mb-0">
         <div className="row">
@@ -51,7 +20,7 @@ class Missions extends Component {
             {
               isFetching
               ? <Loading />
-              : missions.map((mission) => <Mission key={mission.day} {...mission} />)
+              : logs.map(log => <Mission key={log.day} {...log} />)
             }
           </div>
         </div>

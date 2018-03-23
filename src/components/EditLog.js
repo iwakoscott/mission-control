@@ -16,7 +16,7 @@ class EditLog extends Component {
   } // constructor
 
   componentDidMount(){
-    const { day } = this.props.match.params;
+    const { day } = this.props.match.params
     this.setState(() => ({...this.props.location.state, day}));
   }
 
@@ -30,12 +30,8 @@ class EditLog extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { log } = this.props.log;
-    const { title, body } = this.state;
     this.props.dispatch(updateAndHandleLog({
-      ...log,
-      title: title.length === 0 ? log.title : title,
-      body: body.length === 0 ? log.body : body
+      ...this.state
     }, () => this.props.history.push('/admin')));
 
   } // handleSubmit

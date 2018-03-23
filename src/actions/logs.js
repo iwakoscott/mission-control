@@ -37,6 +37,7 @@ function createLogFail(error){
 
 // create thunk pattern
 export function handleCreateLog(log){
+  crud.autoReadOff();
   return (dispatch) => {
     dispatch(createLog());
     return crud.create(log)
@@ -70,7 +71,7 @@ function fetchLogsFail(error){
 }
 
 export function fetchAndHandleLogs(n){
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(fetchLogs());
     return crud.logsRefLimit(n)
       .on('value', logs => {

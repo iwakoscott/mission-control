@@ -3,12 +3,9 @@ import Clock from './Clock';
 import Countdown from './Countdown';
 import Missions from './Missions';
 import { connect } from 'react-redux';
+import { fetchAndHandleLogs } from '../actions/logs';
 
 class MissionControl extends Component {
-
-  componentWillReceiveProps(){
-    this.forceUpdate();
-  }
 
   render(){
     const isFetched = this.props.logs.logs.length;

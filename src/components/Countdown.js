@@ -22,10 +22,10 @@ class Countdown extends Component {
     }
   }
 
-  componentDidUpdate(){
+  componentWillReceiveProps(nextProps){
     clearInterval(this.interval);
-    const { dispatch } = this.props;
-    const recentPostDate = this.props.logs.logs[0].timeStamp;
+    const { dispatch } = nextProps;
+    const recentPostDate = nextProps.logs.logs[0].timeStamp;
     const recent_post = new Date(recentPostDate);
     const dayAfter = new Date(recent_post.getTime() + TWENTY_FOUR_HRS);
 

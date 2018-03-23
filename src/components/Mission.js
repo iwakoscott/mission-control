@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { formatedTimeStamp } from '../utils/tools';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -31,13 +30,6 @@ class Mission extends Component {
       </div>
     );
   }
-}
-
-Mission.propTypes = {
-  timeStamp: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  day: PropTypes.number.isRequired
 }
 
 export default connect(state => ({ users: state.users }))(Mission);

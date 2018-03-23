@@ -1,5 +1,6 @@
 import {
   CREATE_LOG_SUCCESS,
+  CREATE_LOG,
   FETCH_LOGS_SUCCESS,
   FETCH_LOGS,
   FETCH_LOGS_FAIL,
@@ -9,15 +10,22 @@ import {
 const initialState = {
   logs: [],
   isFetching: false,
-  error: null
+  error: null,
+  isCreating: false,
 };
 
 export default function logs(state=initialState, action){
   switch(action.type){
+    case CREATE_LOG:
+      return {
+        ...state,
+        isCreating: true
+      };
     case CREATE_LOG_SUCCESS:
       return {
         ...state,
-        logs: [action.log, ...state.logs]
+        logs: [action.log, ...state.logs],
+        isCreating: false
       };
     case FETCH_LOGS:
       return {

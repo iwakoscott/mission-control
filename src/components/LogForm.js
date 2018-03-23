@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Missions from './Missions';
 import { connect } from 'react-redux';
 import { handleCreateLog } from '../actions/logs';
 import { formatTweet } from '../utils/tools';
@@ -30,7 +29,7 @@ class LogForm extends Component {
     this.setState(() => ({ timeStamp: Date.now(), day: this.props.logs.logs.length }), () => {
       const log = this.state;
       this.props.dispatch(handleCreateLog(log));
-      window.open(`https://twitter.com/intent/tweet?text=${formatTweet(log.day, log.title)}&hashtags=100DaysOfCode,FreeCodeCamp`);
+      //window.open(`https://twitter.com/intent/tweet?text=${formatTweet(log.day, log.title)}&hashtags=100DaysOfCode,FreeCodeCamp`);
       this.setState(() => ({...initialState}));
     });
   }
@@ -91,8 +90,6 @@ class LogForm extends Component {
             </div>
           </div>
         </div>
-        <h6 className="spaced-out text-muted mb-2 mt-4 text-center">Recent Logs</h6>
-        <Missions />
       </div>
     );
   }
