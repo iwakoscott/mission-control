@@ -9,6 +9,12 @@ import {
 import { handleDeleteAllLogs } from '../actions/logs';
 
 const TWENTY_FOUR_HRS = 1000*60*60*24;
+const initialState = {
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  timerFinished: false
+};
 
 class Countdown extends Component {
 
@@ -22,7 +28,7 @@ class Countdown extends Component {
     }
   }
 
-  componentWillUpdate(){
+  componentDidUpdate(){
     clearInterval(this.interval);
     const { dispatch } = this.props;
     const recentPostDate = this.props.logs.logs[0].timeStamp;
