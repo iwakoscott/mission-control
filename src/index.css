@@ -43,3 +43,7 @@ body {
 .time {
   font-family: monospace !important;
 }
+
+.log-item {
+  font-family: 'NTR', sans-serif;
+}

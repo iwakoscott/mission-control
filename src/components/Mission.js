@@ -13,7 +13,7 @@ class Mission extends Component {
         <div className="card-body">
           <h5 className="card-title spaced-out">{`Day ${day}`}</h5>
           <h6 className="card-subtitle mb-2 text-muted">{title}</h6>
-          <p className="card-text">{body}</p>
+          <p className="card-text log-item">{body}</p>
           <p className="small text-muted font-italic">{formattedTime}</p>
           {
             isAnonymous
