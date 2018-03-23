@@ -12,7 +12,6 @@ class Missions extends Component {
 
   render(){
     const { isFetching, logs } = this.props.logs;
-    console.log("I have re rendered!")
     return (
       <div className="container mt-3 mb-0">
         <div className="row">
