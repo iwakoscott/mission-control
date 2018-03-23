@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAndHandleLog, updateAndHandleLog } from '../actions/log';
+import { updateAndHandleLog } from '../actions/log';
 import { formatedTimeStamp } from '../utils/tools';
-import { Redirect } from 'react-router-dom';
 
 class EditLog extends Component {
 
@@ -10,13 +9,15 @@ class EditLog extends Component {
     super(props);
     this.state = {
       title: '',
-      body : ''
+      body : '',
+      timeStamp: null,
+      day: null,
     };
   } // constructor
 
-  componentWillMount(){
+  componentDidMount(){
     const { day } = this.props.match.params;
-    this.props.dispatch(fetchAndHandleLog(day));
+    this.setState(() => ({...this.props.location.state, day}));
   }
 
   handleOnChange(event) {
@@ -40,73 +41,54 @@ class EditLog extends Component {
   } // handleSubmit
 
   render(){
-    const { title, body } = this.state;
-    const { isFetching, log, error } = this.props.log;
-    const timeStampFormatted = log !== null ? formatedTimeStamp(log.timeStamp) : null;
-
-    if (error !== null) {
-      console.log(this.props.location);
-      return <Redirect
-                to={{
-                  pathname: "/403",
-                  state: { from: this.props.location }
-                }}/>;
-    }
+    const { title, body, timeStamp, day } = this.state;
+    const timeStampFormatted = formatedTimeStamp(timeStamp);
 
     return (
       <div className="container mt-3 mb-3">
         <div className="row">
           <div className="col-lg-8 offset-lg-2">
-
-            {
-              isFetching
-                ? <div className="card">
-                    <div className="card-body">
-                      <h1 className="card-title spaced-out">Loading...</h1>
-                    </div>
-                  </div>
-                : <div className="card">
-                    <div className="card-body">
-                      <h1 className="card-title spaced-out">{`Day ${log.day}`}</h1>
-                      <p className="text-muted small mt-1 mb-3">{timeStampFormatted}</p>
-                      <form onSubmit={this.handleSubmit}>
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                              <span className="input-group-text">title</span>
-                            </div>
-                            <input
-                              className="form-control"
-                              id="title"
-                              value={title}
-                              placeholder={log.title}
-                              type="text"
-                              onChange={(e) => this.setState(this.handleOnChange(e))}
-                            />
+              <div className="card">
+                <div className="card-body">
+                  <h1 className="card-title spaced-out">{`Day ${day}`}</h1>
+                  <p className="text-muted small mt-1 mb-3">{timeStampFormatted}</p>
+                  <form onSubmit={this.handleSubmit}>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">title</span>
                         </div>
-                        <div className="input-group">
-                          <div className="input-group-prepend">
-                            <span className="input-group-text">body</span>
-                          </div>
-                          <textarea
-                            style={{"resize": "none"}}
-                            className="form-control"
-                            id="body"
-                            placeholder={log.body}
-                            value={body}
-                            type="text"
-                            rows={7}
-                            onChange={(e) => this.setState(this.handleOnChange(e))}
-                          ></textarea>
-                        </div>
-                        <button
-                          className="btn btn-secondary btn-block spaced-out mt-3"
-                          type="submit">
-                            Edit Log
-                        </button>
-                      </form>
+                        <input
+                          className="form-control"
+                          id="title"
+                          value={title}
+                          placeholder={title}
+                          type="text"
+                          onChange={(e) => this.setState(this.handleOnChange(e))}
+                        />
                     </div>
-                  </div>
-              }
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">body</span>
+                      </div>
+                      <textarea
+                        style={{"resize": "none"}}
+                        className="form-control"
+                        id="body"
+                        placeholder={body}
+                        value={body}
+                        type="text"
+                        rows={7}
+                        onChange={(e) => this.setState(this.handleOnChange(e))}
+                      ></textarea>
+                    </div>
+                    <button
+                      className="btn btn-secondary btn-block spaced-out mt-3"
+                      type="submit">
+                        Edit Log
+                    </button>
+                  </form>
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -116,4 +98,4 @@ class EditLog extends Component {
 }
 
 
-export default connect(state => ({ log: state.log }))(EditLog);
+export default connect()(EditLog);

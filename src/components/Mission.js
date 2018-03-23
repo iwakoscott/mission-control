@@ -19,7 +19,13 @@ class Mission extends Component {
           {
             isAnonymous
               ? null
-              : <Link to={`/edit-log/${day}`}><i className="fa fa-edit fa-fw float-right"></i></Link>
+              : <Link
+                  to={{
+                    pathname: `/edit-log/${day}`,
+                    state: { title, body, timeStamp }
+                  }}>
+                  <i className="fa fa-edit fa-fw float-right"></i>
+                </Link>
           }
         </div>
       </div>
