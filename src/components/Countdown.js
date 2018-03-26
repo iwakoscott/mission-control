@@ -59,7 +59,7 @@ class Countdown extends Component {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
 
-      if (diff === 0){
+      if (diff <= 0){
         clearInterval(this.interval);
         dispatch(countDownEnd());
         //dispatch(handleDeleteAllLogs());
