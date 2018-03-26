@@ -34,7 +34,7 @@ class Countdown extends Component {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
 
-      if (diff === 0){
+      if (diff <= 0){
         clearInterval(this.interval);
         dispatch(countDownEnd());
         //dispatch(handleDeleteAllLogs());
@@ -62,6 +62,7 @@ class Countdown extends Component {
       if (diff <= 0){
         clearInterval(this.interval);
         dispatch(countDownEnd());
+        return this.setState(() => ({ timerFinished: true }))
         //dispatch(handleDeleteAllLogs());
       }
 
@@ -73,7 +74,6 @@ class Countdown extends Component {
     const { hours, minutes, seconds, timerFinished } = this.state;
     const { logs } = this.props.logs;
     const day = logs[0].day;
-
     if (timerFinished){
       if (day + 1 === 101) {
         return <h3>100 Days! Mission Complete!</h3>;
