@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
 import middleware from './middleware';
+import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer, middleware);
 ReactDOM.render(
@@ -14,3 +15,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+registerServiceWorker();
