@@ -7,7 +7,7 @@ import { fetchAndHandleLogs } from '../actions/logs';
 class Missions extends Component {
 
   componentDidMount(){
-    this.props.dispatch(fetchAndHandleLogs(100));
+    this.props.dispatch(fetchAndHandleLogs(101));
   }
 
   render(){

@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
-import { parseTime } from '../utils/tools';
-import { connect } from 'react-redux';
-import {
-  tick,
-  countdownStart,
-  countDownEnd
-} from '../actions/countdown';
-import { handleDeleteAllLogs } from '../actions/logs';
+import React, { Component } from "react";
+import { parseTime } from "../utils/tools";
+import { connect } from "react-redux";
+import { tick, countdownStart, countDownEnd } from "../actions/countdown";
+import { handleDeleteAllLogs } from "../actions/logs";
 
-const TWENTY_FOUR_HRS = 1000*60*60*24;
+const TWENTY_FOUR_HRS = 1000 * 60 * 60 * 24;
 
 class Countdown extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      timerFinished: false,
-    }
+      timerFinished: false
+    };
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     clearInterval(this.interval);
     const { dispatch } = nextProps;
     const recentPostDate = nextProps.logs.logs[0].timeStamp;
@@ -34,7 +29,7 @@ class Countdown extends Component {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
 
-      if (diff <= 0){
+      if (diff <= 0) {
         clearInterval(this.interval);
         dispatch(countDownEnd());
         //dispatch(handleDeleteAllLogs());
@@ -44,11 +39,11 @@ class Countdown extends Component {
     }, 1000);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const { dispatch } = this.props;
     const recentPostDate = this.props.logs.logs[0].timeStamp;
     const recent_post = new Date(recentPostDate);
@@ -59,10 +54,10 @@ class Countdown extends Component {
       const now = Date.now();
       const diff = dayAfter.getTime() - now;
 
-      if (diff <= 0){
+      if (diff <= 0) {
         clearInterval(this.interval);
         dispatch(countDownEnd());
-        return this.setState(() => ({ timerFinished: true }))
+        return this.setState(() => ({ timerFinished: true }));
         //dispatch(handleDeleteAllLogs());
       }
 
@@ -70,26 +65,35 @@ class Countdown extends Component {
     }, 1000);
   } // componentDidMount
 
-  render(){
+  render() {
     const { hours, minutes, seconds, timerFinished } = this.state;
     const { logs } = this.props.logs;
     const day = logs[0].day;
-    if (timerFinished){
-      if (day + 1 === 101) {
-        return <h3>100 Days! Mission Complete!</h3>;
-      } else {
-        return <h3 className="spaced-out">Times up! Post Pending...</h3>;
-      }
+    if (day === 100) {
+      return (
+        <h1 className="display-5 text-center" style={{ color: "#fffa65" }}>
+          MISSION COMPLETE! <br />
+          <span role="img" aria-label="emojis">
+            💯🎉🥂
+          </span>
+        </h1>
+      );
+    } else if (timerFinished) {
+      return <h3 className="spaced-out">Times up! Post Pending...</h3>;
     }
 
     return (
       <div>
         <h3 className="spaced-out">Time Left</h3>
-        <span className="h2 time">{ hours < 10 ? `0${hours}` : hours }</span>
+        <span className="h2 time">{hours < 10 ? `0${hours}` : hours}</span>
         <span className="lead colon">&#58;</span>
-        <span className="h2 time">{ minutes < 10 ? `0${minutes}` : minutes }</span>
+        <span className="h2 time">
+          {minutes < 10 ? `0${minutes}` : minutes}
+        </span>
         <span className="lead colon">&#58;</span>
-        <span className="h2 time">{ seconds < 10 ? `0${seconds}` : seconds }</span>
+        <span className="h2 time">
+          {seconds < 10 ? `0${seconds}` : seconds}
+        </span>
       </div>
     );
   } // render
