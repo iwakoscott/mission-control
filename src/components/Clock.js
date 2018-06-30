@@ -38,10 +38,16 @@ class Clock extends Component {
         </div>
         <div className="col col-xs-4 col-md-2 d-flex justify-content-center text-center">
           <h5 className="spaced-out">
-            {logs.length === 101 ? `DONE` : `Day ${logs.length}`}
+            {logs.length === 101 ? (
+              <span role="img" aria-label="emoji" style={{ fontSize: "40px" }}>
+                💯
+              </span>
+            ) : (
+              `Day ${logs.length}`
+            )}
           </h5>
         </div>
-        <Indicator />
+        <Indicator missionComplete={logs.length === 101} />
       </Fragment>
     );
   } // render
